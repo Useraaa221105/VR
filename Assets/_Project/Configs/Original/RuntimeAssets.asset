@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1857c050df6555dac08ff45f2d91e45, type: 3}
+  m_Name: RuntimeAssets
+  m_EditorClassIdentifier: Assembly-CSharp::Podz.SavedDungeonAssets
+  Caves: {fileID: 11400000, guid: d707e047fa647a645bc6bbbc768c03b6, type: 2}
+  Ruins: {fileID: 11400000, guid: 9f1aedb0cb130234bbc453710f63f045, type: 2}
+  Lair: {fileID: 11400000, guid: 701e8b26b6f001a408d3a1eb5dee9a37, type: 2}
+  FortressRooms:
+  - {fileID: 844435202328609874, guid: 96c053249b7ece943bb316257af61dc3, type: 3}
+  - {fileID: 1582964701006797209, guid: 4ae0de2ff7c8d4643b15745033fdd6a2, type: 3}
+  - {fileID: 1893106627093889646, guid: e71cce598628d4f489d31984a4152e1a, type: 3}
+  - {fileID: 5061396774640293312, guid: a6b4e8698e7e3994385a8b906c636441, type: 3}
+  - {fileID: 8507179731609002428, guid: 85f90b0d7b9de184fba695f05b3c0aa6, type: 3}
+  - {fileID: 8212184527730892617, guid: c01dc55abf3f68c4c9683a3a6f711c86, type: 3}
+  - {fileID: 3181976622498097205, guid: 0c04a81177266ce41b6d5cbbcc2e8ecc, type: 3}
+  - {fileID: 8062564229109171082, guid: 387fe391b1515bd4b8fc068273d604c6, type: 3}
+  - {fileID: 5805722415493845951, guid: 951e798878f573f459d2010d92b8e912, type: 3}
+  - {fileID: 2396149463339757528, guid: 80c08e71c6544ca4cb5c754d3d7796e5, type: 3}
+  - {fileID: 4969565264605898463, guid: d700401666f221d48ae0afeeeaf132b0, type: 3}
+  - {fileID: 2877192910741378517, guid: 67949f1dec1c7264bacd42c2a1b42309, type: 3}
+  - {fileID: 6089223832714067968, guid: a88e095680dfbf747b670277ef3984da, type: 3}
+  - {fileID: 6862265261412148827, guid: 6ac5d628a60009240a29aae242d20330, type: 3}
+  - {fileID: 1648050450098338070, guid: 0b357392e78ffab498ae0b51cb7cb62a, type: 3}
+  - {fileID: 7106604889513015520, guid: 854368e6f60b2194cb4fbd21ebb862ee, type: 3}
+  - {fileID: 4613708283516440240, guid: 83256142f1070134db0bad969ed31500, type: 3}
+  - {fileID: 5216095772470597026, guid: 61405dc3a3f31704489c863790b57cb3, type: 3}
+  - {fileID: 1066699452506295427, guid: 17b1e7dc8827cf049986bf0367f666ca, type: 3}
+  - {fileID: 6056355372689364148, guid: a5845421fa4bb1846964a5680eba3e47, type: 3}
+  - {fileID: 3486070011199873496, guid: 849d3a6c8b9401047aea72ec7ad3f4bc, type: 3}
+  - {fileID: 4787151985552947119, guid: a174886e4d9d5f2429dd0c9b8b97e7a2, type: 3}
+  - {fileID: 1431525646242344908, guid: 2a936699ef079344493ec19b8a352844, type: 3}
+  - {fileID: 7098911549844784026, guid: abbdbf4334e49d34e8f2c6df4983e2bf, type: 3}
+  - {fileID: 6860063798603590788, guid: 60ba476de1de2b04baa5fe64ed52cd29, type: 3}
+  - {fileID: 7314686929824695727, guid: 1af43e04ca32edc4484e2b3c41d40420, type: 3}
+  - {fileID: 4357312556635992599, guid: f45bdd02395a891429c6ba643bbde06d, type: 3}
+  - {fileID: 5057645714654054935, guid: 1634ce8a87f1c3d479c8cce2c58fdb0b, type: 3}
+  - {fileID: 6612606688405140633, guid: 9461691bf065b5646aafca043ea7d664, type: 3}
+  - {fileID: 2660293333467742468, guid: 7d8354c8f87aee34384faca5de7a419e, type: 3}
+  - {fileID: 612500325595120795, guid: 19dc96f05ba5661418852c59640cb330, type: 3}
+  - {fileID: 6910570134377230346, guid: 6b70891ac4e17374480808b7aa11163a, type: 3}
+  - {fileID: 5191374042526350198, guid: 2f3fe7676769fe249a53a1efd36c989b, type: 3}
+  - {fileID: 2981828827174546128, guid: 91060fc1894a8144d80d6ec56fe5113d, type: 3}
+  - {fileID: 4550353818585163402, guid: 21614fa06091f884386688c42aaef046, type: 3}
+  - {fileID: 4540691616283418128, guid: 406b609a07d709d4684dd866230bfc93, type: 3}
+  - {fileID: 2808704067714724198, guid: 66dd6c4525877f04ea1fccb0d07b62a5, type: 3}
+  - {fileID: 5881201419126790472, guid: 835e8c5410f2c1846b0987d48e16fbc5, type: 3}
+  - {fileID: 4363450104689477193, guid: 788647a73ee86124eb9958ae45477f6a, type: 3}
+  - {fileID: 6479457158115135387, guid: 04e09058674f5d9499dbef0d193d694b, type: 3}
+  - {fileID: 3028711068505898743, guid: 463f210cf73fdc04885d7bede5b92ddc, type: 3}
+  - {fileID: 8321676891767290741, guid: 802728fa0d9455845b86582d42d982b2, type: 3}
+  - {fileID: 1564859611644221817, guid: 8f3a5ca4eff70604281fd867d8e2c3c0, type: 3}
+  - {fileID: 4370219423794076878, guid: f88da6b5f3a6fec419f50e454ec14833, type: 3}
+  - {fileID: 2331480678823410097, guid: 557352090fc56cc43aa3101491f7a3a5, type: 3}
+  FortressPassages:
+  - {fileID: 3569751025022154785, guid: 088a7c91607155e41b237ed2cb255f21, type: 3}
+  - {fileID: 3194755302687945894, guid: 47efe5786c2fb3b4f98b39a11f684192, type: 3}
+  - {fileID: 4199295131496193421, guid: a8816efd4225eae4194f8f44cd52195d, type: 3}
+  - {fileID: 29362205667818261, guid: 567e4214fae931e4da3978fd67b4b68c, type: 3}
+  - {fileID: 5421786619366525763, guid: 4ebd5c11325e5424cbb1253df6984484, type: 3}
+  ReturnPortal: {fileID: 11400000, guid: 49ef0cdfb903c654899eae68a65d8f3f, type: 2}
+  DescentPortal: {fileID: 11400000, guid: e627b08983c84fb48855218618195dd0, type: 2}
+  CaveSpores: {fileID: 11400000, guid: 3174fe164a82bc94e9ad4eb4c30c3a5f, type: 2}
+  RuinsSpores: {fileID: 11400000, guid: d81440355d2195d4d8be58e24a423e0b, type: 2}
+  Loot:
+  - {fileID: 11400000, guid: f4a414aa081d2ee4c915986300c5a523, type: 2}
+  - {fileID: 11400000, guid: e2907487c68e51e45bc2cfdacea2d434, type: 2}
+  - {fileID: 11400000, guid: ba54cba2189390247ad589165b6948a5, type: 2}
+  - {fileID: 11400000, guid: 7bc7cdb951e3e9e418edf6aae5153077, type: 2}
+  - {fileID: 11400000, guid: 7cd8f979d041b05479c6f15e67a0f9ab, type: 2}
+  - {fileID: 11400000, guid: 9c0ba2f53d6b5f14b806afe982a6b17a, type: 2}
+  - {fileID: 11400000, guid: 86a548cd773e7f140837d638af4240fb, type: 2}
+  Doors:
+  - {fileID: 11400000, guid: 552acb509786c174b9f4eb1317064320, type: 2}
+  - {fileID: 11400000, guid: 5add5c0f1e563464abd6d64383daafa9, type: 2}
+  - {fileID: 11400000, guid: 3c991de9dcfe5734592de58bcab396bc, type: 2}
+  Elixirs:
+  - {fileID: 11400000, guid: 3233b82f1ffdc8a4e8ca8269505577c6, type: 2}
+  - {fileID: 11400000, guid: b2f78f0b0b2fd50428e695bb1dd4abe5, type: 2}
+  - {fileID: 11400000, guid: 67b01043650d95a42856a41b53876d28, type: 2}
+  CavePuddle: {fileID: 11400000, guid: af311601d46bd5e4e8dc639ff8985795, type: 2}
+  FortressChest: {fileID: 11400000, guid: d157b1cf62ff82e4bbe9259813d48d56, type: 2}
+  FortressDecor:
+  - {fileID: 8349552543648944876, guid: 85a40efc5468c764aa1b5542e8d23bb8, type: 3}
+  - {fileID: 9000900647889516611, guid: df6fa0649fc3a6a41ad323f224d3f2b9, type: 3}
+  - {fileID: 420018792615198179, guid: c80c4c08161654c41833f15b6288eaae, type: 3}
+  - {fileID: 6708820290665872193, guid: 29269cbf7fcab394f8de39598a8d2054, type: 3}
+  - {fileID: 8268438667742451592, guid: f55a671f7e774e74fa5f46c3912403c8, type: 3}
+  - {fileID: 1567085695832063749, guid: 06097daf6361f4442bad9e663ab15672, type: 3}
+  - {fileID: 698254669141280827, guid: 33ce9d96fa355cc49b1a8d5db5b0c820, type: 3}
+  - {fileID: 1055787733324572035, guid: 1256436129117f645be3d52521af663a, type: 3}
+  - {fileID: 5052419386581717653, guid: 722a5b69c180caf4a853fbcec9a6deef, type: 3}
+  - {fileID: 800682173917857638, guid: 37bc33dc4bdab094983d16979265bf20, type: 3}
+  - {fileID: 300191163086348037, guid: 58da880a654960c4a825c39dd787bba1, type: 3}
+  - {fileID: 5844201159746789249, guid: f6ccd9d9bef772c4fa55cfdd80848474, type: 3}
+  - {fileID: 2797710207913834023, guid: 98e94782cfc358b48abc9833bbe801c6, type: 3}
+  - {fileID: 9087105556859957749, guid: a65cbfe60bcc201448d8735b1ef7422c, type: 3}
+  - {fileID: 8866600709290503107, guid: e93979900bacd974b8b40bf758dcb9e4, type: 3}
+  - {fileID: 7895418443553434329, guid: 6cce868f60e71cb4388a5d7ec365ad2e, type: 3}
+  - {fileID: 3553937297544554409, guid: e8e09f3915df12047819e87c62bc16ca, type: 3}
+  - {fileID: 748033089546720674, guid: 607cedca679f31646ba7772632b02308, type: 3}
+  - {fileID: 3861851357546528616, guid: 9db7bc596145dd04da2b5320a99c96e6, type: 3}
+  - {fileID: 1722931072234538703, guid: b97592ba7e999f54e98a1d36e77854cf, type: 3}
+  - {fileID: 8235442417812277194, guid: 8c137e46d46535346b429cfafbd5e15f, type: 3}
+  - {fileID: 4049003982401557322, guid: dbb13ceb534bd1e488e15ac0e7cbe6fd, type: 3}
+  - {fileID: 4305355809986388393, guid: e64ab085e626f6c44b5630f71cd13d8d, type: 3}
+  - {fileID: 2239417601101510971, guid: 77d79ea4a29ec54488a81a84912253a8, type: 3}
+  GuideCanvas: {fileID: 8394190279722233998, guid: 8d898711c61ff7a4ebe210cc8ab3902c, type: 3}
+  KitchenCoachCanvas: {fileID: 257575975428442045, guid: ef4b2817a74269f4ab18938da7312eb0, type: 3}
+  HuntCoachCanvas: {fileID: 115081301318693358, guid: 3421a519361dff84da65e3a6b03e1768, type: 3}
+  BestiaryCanvas: {fileID: 6054182605208589089, guid: afbdd18cd64e0f44684d4ac0e1f98997, type: 3}
+  HuntIntroPc: {fileID: 3995843620570271983, guid: 39d21ac3b56ae16479061ed0ee98a749, type: 3}
+  HuntIntroVr: {fileID: 3853187192268810087, guid: 3cc872be80d160f418bcbfd969cf43a8, type: 3}
+  CaveAcid: {fileID: 11400000, guid: baec6434762dcf3429ab180a01e19a02, type: 2}
+  FortressDarts: {fileID: 11400000, guid: 4ce0605a84de40048bfe1e4f6a40b1af, type: 2}
+  RuinsVines: {fileID: 11400000, guid: 1f43283d30d2d1e47a44c411f6ddb883, type: 2}
+  RuinsDarts: {fileID: 11400000, guid: e7a0bb26a6a59044eae8430675c0a02c, type: 2}
+  RuinsRockfall: {fileID: 11400000, guid: 3bd2a042ee805e6419eac4335bb1993f, type: 2}
+  Hud: {fileID: 5216945148830971118, guid: 3aae3b933d676b04f9a7394fd80f3116, type: 3}
+  ToolBar: {fileID: 5976465976793608746, guid: 65d588e7238252e48bb835055b492ba7, type: 3}
+  Orders: {fileID: 3324960921717948375, guid: 81744f3213cb4814a93108e987019d44, type: 3}
+  RecipeDisplay: {fileID: 787332571990836938, guid: 7f33afd7d0c469041afd0a9988310118, type: 3}
+  Settings: {fileID: 927379082878609061, guid: fb65c0d3efaa47f40a8025e59829272e, type: 3}
+  FridgeDisplay: {fileID: 4449236197891238160, guid: c1bd1de8cb4caab428a5a5f85f5ee69d, type: 3}
+  Tools:
+  - {fileID: 7148389761899148808, guid: 8e0ad8102506bfa48b428ca2828f8b0d, type: 3}
+  - {fileID: 3564071365242881987, guid: 18a1ba90cec2b7e4c99c7d52be27b559, type: 3}
+  - {fileID: 1431162936629136995, guid: bba467c8e4431d84a86ff566d91c550a, type: 3}
+  - {fileID: 7088999779521737689, guid: 6d1c3426665f63340beea7596207f928, type: 3}
+  - {fileID: 540854565041190317, guid: c5796cf218aca8d4bb019d014e22a723, type: 3}
+  - {fileID: 7044036585762318367, guid: 5a6224f1a6f59604881fa83f03f9ab4c, type: 3}
+  - {fileID: 7350375009747970408, guid: edb9acda66f5e944ca32c9c3c0403d2d, type: 3}
+  LargeCauldron: {fileID: 5554419376186604071, guid: 5495c54058c3dc84a99f4cdbc3437e03, type: 3}
+  SmallCauldron: {fileID: 3871511792250326648, guid: 68e26a34165190f4ba1db00ee9cb4906, type: 3}
+  Preparation: {fileID: 3768016350068717250, guid: e11f308933b6e844db7ae66df7ecce9b, type: 3}
+  Fridge: {fileID: 4229861187233239054, guid: 06957a680b31f7741869b11e6317d3f1, type: 3}
+  Shop: {fileID: 7987946880103028949, guid: 1eba30e75f3237b44a94a3d8bab7324c, type: 3}
+  CaveStalactite: {fileID: 11400000, guid: 5d1a7fce1f2d6534dbfae61930c35550, type: 2}
+  FortressPendulum: {fileID: 11400000, guid: 280ee65cb10af374daacaf29510637dd, type: 2}
+  FortressFireGrate: {fileID: 11400000, guid: c49db48ad611e5440b509bea04f9a422, type: 2}
+  Toby: {fileID: 2484130433050253161, guid: 17d1696c67c2bdb4ba20351545cf5f9c, type: 3}
+  Guests:
+  - {fileID: 641858550402732944, guid: d1db5ad5419de9f4f981b14535f5d740, type: 3}
+  - {fileID: 7723314219346766098, guid: 0143cafc10e6e5c45b84ce15d1a67f41, type: 3}
+  - {fileID: 5700619001743321699, guid: c5a07ba54244650479c942d293bde4e6, type: 3}
+  - {fileID: 5795386726939103879, guid: 3b4381feca0b5cb40aae192d73343915, type: 3}
+  - {fileID: 5139977022365172517, guid: 66cd2a19230b6824ebd3b8e2de2bf4eb, type: 3}
+  - {fileID: 3765073168671039096, guid: a60af1d15f7fd3f4390e410ccb611979, type: 3}
+  Ingredients:
+  - {fileID: 8005258501887387963, guid: ad79783aab5d8474594e0ab29342980c, type: 3}
+  - {fileID: 8256201110180060680, guid: 207d5a9a6e08db5419ef38b0a68e0d86, type: 3}
+  - {fileID: 1813091808930263926, guid: 1c31f2c0c27b19642892b5645779428a, type: 3}
+  - {fileID: 3177192474442845648, guid: 0e5b8f8604b85c94bb60ab1a8e10cbf7, type: 3}
+  - {fileID: 1517753518728193846, guid: 727b19d59e2f10e4685d5a98bf8162f1, type: 3}
+  - {fileID: 5007937629517254569, guid: b3db48f0e5b133d48b6a985b984f542f, type: 3}
+  - {fileID: 5795157911211416841, guid: de2b5f0e695d437438dc29c76189b5fa, type: 3}
+  - {fileID: 5513502275047057586, guid: 0e643afb973c28643b5ad8b83cdebdc6, type: 3}
+  - {fileID: 1888535023722714771, guid: 2952f4555fce91544bde0194ea285e54, type: 3}
+  - {fileID: 5636472010000009005, guid: 1a762357519466e488148e728c20cd6d, type: 3}
+  - {fileID: 2489789250789201229, guid: 1669483457ac69c49807abc9a14893a7, type: 3}
+  Bowls:
+  - {fileID: 453526479316361516, guid: 046fb187353a25e47b1f0e200fb61dd7, type: 3}
+  - {fileID: 775771425180808609, guid: 4caf561e9830d8642a5c4c443ac6bd70, type: 3}
+  - {fileID: 8762719565492260973, guid: 84743acab2e33324487c4ed11352cb7f, type: 3}
+  - {fileID: 2933321485484140275, guid: 4aaf60bc36513d44ba8d421e1d331c78, type: 3}
+  - {fileID: 3320792514931738019, guid: 2f9302fd62bae284fb97013ce32e0293, type: 3}
+  - {fileID: 1773780451877057081, guid: 6c51a96b3ddc09d4fb3e82b81e49dbcf, type: 3}
+  - {fileID: 6587032266367294406, guid: 9b31fb7c413673d4a868b263f4cb4813, type: 3}
+  RecipeParameters:
+  - Name: "\u0416\u0435\u043B\u0435\u0439\u043D\u0430\u044F \u043F\u043E\u0445\u043B\u0451\u0431\u043A\u0430"
+    CookSeconds: 8
+    Price: 10
+    Heat: 2
+  - Name: "\u0421\u0443\u043F \u0438\u0437 \u0433\u0440\u0438\u0431\u043D\u044B\u0445 \u043D\u043E\u0436\u0435\u043A"
+    CookSeconds: 10
+    Price: 18
+    Heat: 2
+  - Name: "\u0421\u0443\u043F \u0438\u0437 \u043C\u0430\u043D\u0434\u0440\u0430\u0433\u043E\u0440\u044B"
+    CookSeconds: 12
+    Price: 30
+    Heat: 1
+  - Name: "\u0411\u0443\u043B\u044C\u043E\u043D \u0438\u0437 \u0432\u0430\u0441\u0438\u043B\u0438\u0441\u043A\u0430"
+    CookSeconds: 14
+    Price: 45
+    Heat: 3
+  - Name: "\u0420\u0430\u0433\u0443 \xAB\u041F\u043E\u043B\u043D\u044B\u0439 \u0434\u043E\u0441\u043F\u0435\u0445\xBB"
+    CookSeconds: 14
+    Price: 60
+    Heat: 2
+  - Name: "\u0421\u0443\u043F \u0438\u0437 \u043C\u0438\u043C\u0438\u043A\u0430"
+    CookSeconds: 12
+    Price: 80
+    Heat: 1
+  - Name: "\u0414\u0440\u0430\u043A\u043E\u043D\u0438\u0439 \u0441\u0443\u043F"
+    CookSeconds: 18
+    Price: 150
+    Heat: 3
+  CleaverPrice: 150
+  HammerPrice: 300
+  ShieldPrice: 400
+  DaySeconds: 300
+  FirstGoal: 120
+  SecondGoal: 350
+  ThirdGoal: 700

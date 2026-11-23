@@ -1,0 +1,46 @@
+# Unity generates these directories locally.
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+/[Bb]uild/
+/[Bb]uilds/
+/[Aa]rtifacts/
+/[Ss]erverData/
+/[Ll]ocalCache/
+
+# IDE and operating system files
+/.vs/
+/.vscode/
+/.idea/
+/.consulo/
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.opendb
+*.VC.db
+.DS_Store
+Thumbs.db
+
+# Local builds, debug outputs and credentials
+*.apk
+*.aab
+*.unitypackage
+*.keystore
+*.jks
+*.pfx
+*.log
+*.tmp
+*.bak
+*.stackdump
+/crashlytics-build.properties
+/sysinfo.txt
+/.env
+/.env.*

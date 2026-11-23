@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b2dfecf63945038437bc0fd04827f2, type: 3}
+  m_Name: Pendulum_F3
+  m_EditorClassIdentifier: Assembly-CSharp::Podz.DungeonObjectRecipe
+  Kind: 5
+  Floor: 3
+  Seed: 1
+  CeilingHeight: 4
+  Loot: 0
+  LastPrefab: {fileID: 4552727403771735324, guid: 23fc2056f8b202c41a3c973c58adc23e, type: 3}

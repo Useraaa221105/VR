@@ -1,0 +1,80 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+namespace Podz {
+    /// <summary>Только внешний вид мандрагоры и василиска −2. Коллайдеры, захваты и конечные автоматы остаются прежними.</summary>
+    public static class RuinsCreatures {
+        static Material _skin,_rootSkin,_leaf,_feather;static Mesh _rootBody;
+        static readonly Color Bark=new Color(.55f,.39f,.22f),Crease=new Color(.30f,.19f,.085f),LeafGreen=new Color(.27f,.40f,.14f),Gold=new Color(.64f,.45f,.20f),Bronze=new Color(.42f,.26f,.12f),Red=new Color(.55f,.15f,.085f),Black=new Color(.065f,.055f,.035f),Snake=new Color(.39f,.43f,.16f);
+        static Material Skin {get{if(_skin==null){_skin=new Material(Shader.Find("Universal Render Pipeline/Lit"));_skin.name="RuinsCreatureURPLit";_skin.SetColor("_BaseColor",Color.white);_skin.SetFloat("_Smoothness",.28f);_skin.EnableKeyword("_EMISSION");_skin.enableInstancing=true;}return _skin;}}
+        static Material Feathers {get{if(_feather==null){_feather=new Material(Skin);_feather.name="MatteDoubleSidedFeathers";_feather.SetFloat("_Cull",0);_feather.SetFloat("_Smoothness",.16f);}return _feather;}}
+        static Transform Find(Monster m,string name){foreach(var t in m.GetComponentsInChildren<Transform>())if(t.name==name)return t;return null;}
+        static void Hide(Monster m,MonsterAnim a,params string[] names){foreach(var name in names){var t=Find(m,name);if(t!=null && t.GetComponent<Renderer>() is Renderer r)a.Hidden.Add(r);}}
+        static Transform Node(string name,Transform p,Vector3 at){var t=new GameObject(name).transform;t.SetParent(p,false);t.localPosition=at;return t;}
+        static Transform Neutral(string name,Transform p){var t=Node(name,p,Vector3.zero);var s=p.lossyScale;t.localScale=new Vector3(1/Mathf.Abs(s.x),1/Mathf.Abs(s.y),1/Mathf.Abs(s.z));return t;}
+        static GameObject Ball(string name,Transform p,Vector3 at,Vector3 size,Color c){var g=Prim.Sphere(name,p,at,size,c);g.GetComponent<Renderer>().sharedMaterial=Skin;return g;}
+        static Renderer Draw(string name,Transform p,Mesh mesh,Color c,Material mat=null){var g=new GameObject(name);g.transform.SetParent(p,false);g.AddComponent<MeshFilter>().sharedMesh=mesh;var r=g.AddComponent<MeshRenderer>();r.sharedMaterial=mat!=null?mat:Skin;r.shadowCastingMode=ShadowCastingMode.Off;Prim.SetColor(r,c);return r;}
+        static Mesh Make(string name,List<Vector3> v,List<int> tr){var mesh=new Mesh{name=name};mesh.SetVertices(v);mesh.SetTriangles(tr,0);var uv=new List<Vector2>();foreach(var p in v)uv.Add(new Vector2(Mathf.Atan2(p.z,p.x)/Mathf.PI,p.y*12));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();return mesh;}
+        static Mesh Lathe(float[] ys,float[] rs){var v=new List<Vector3>();var tr=new List<int>();const int n=24;for(int k=0;k<ys.Length;k++)for(int j=0;j<n;j++){float a=j*Mathf.PI*2/n,r=rs[k]*(1+.035f*Mathf.Sin(j*2+k));v.Add(new Vector3(Mathf.Cos(a)*r,ys[k],Mathf.Sin(a)*r));}for(int k=0;k<ys.Length-1;k++)for(int j=0;j<n;j++){int a=k*n+j,b=k*n+(j+1)%n;tr.AddRange(new[]{a,a+n,b,b,a+n,b+n});}return Make("WrinkledHumanRoot",v,tr);}
+        static Renderer Tube(string name,Transform t,List<Vector3> path,float radius,Color c,float endScale=.6f){var v=new List<Vector3>();var tr=new List<int>();const int n=8;for(int k=0;k<path.Count;k++){var dir=k==path.Count-1?path[k]-path[k-1]:path[k+1]-path[k];var q=Quaternion.FromToRotation(Vector3.up,dir.normalized);float r=radius*Mathf.Lerp(1,endScale,k/(float)(path.Count-1));for(int j=0;j<n;j++){float a=j*Mathf.PI*2/n;v.Add(path[k]+q*new Vector3(Mathf.Cos(a)*r,0,Mathf.Sin(a)*r));}}for(int k=0;k<path.Count-1;k++)for(int j=0;j<n;j++){int a=k*n+j,b=k*n+(j+1)%n;tr.AddRange(new[]{a,a+n,b,b,a+n,b+n});}return Draw(name,t,Make(name,v,tr),c);}
+        // Неподвижные мелкие трубки одного цвета объединяются стандартным Mesh.CombineMeshes.
+        // Это уменьшает число рендереров; коллайдеры и анимируемые узлы не затрагиваются.
+        static void CombineDetails(Transform parent,string name,params string[] names){
+            var found=new List<Renderer>();foreach(var r in parent.GetComponentsInChildren<Renderer>())foreach(var n in names)if(r.name==n){found.Add(r);break;}
+            if(found.Count<2)return;var parts=new List<CombineInstance>();var block=new MaterialPropertyBlock();found[0].GetPropertyBlock(block);var color=block.GetColor("_BaseColor");
+            foreach(var r in found){var mf=r.GetComponent<MeshFilter>();if(mf!=null)parts.Add(new CombineInstance{mesh=mf.sharedMesh,transform=parent.worldToLocalMatrix*r.transform.localToWorldMatrix});}
+            var mesh=new Mesh{name=name};mesh.CombineMeshes(parts.ToArray(),true,true);Draw(name,parent,mesh,color,found[0].sharedMaterial);
+            foreach(var r in found)Object.DestroyImmediate(r.gameObject);
+        }
+        static void Leaf(List<Vector3> v,List<int> tr,Vector3 basePos,Vector3 dir,float width){var side=Vector3.Cross(dir.normalized,Vector3.up).normalized*width;if(side.sqrMagnitude<.0001f)side=Vector3.right*width;int k=v.Count;v.Add(basePos);v.Add(basePos+dir*.38f-side);v.Add(basePos+dir*.52f+Vector3.forward*.009f);v.Add(basePos+dir*.38f+side);v.Add(basePos+dir);tr.AddRange(new[]{k,k+1,k+2,k,k+2,k+3,k+1,k+4,k+2,k+2,k+4,k+3});}
+        public static void Mandrake(Monster m,MonsterAnim a){
+            var leaves=Find(m,"Leaves");var root=Find(m,"Root");Hide(m,a,"Leaves");if(root.GetComponent<Renderer>() is Renderer rr)a.HiddenAlways.Add(rr);
+            // Листья дочерние прежнему захвату: срез штатно выключает весь Leaves.
+            var foliage=Neutral("BroadMandrakeLeafVisual",leaves);foliage.localPosition=new Vector3(0,-.13f/leaves.lossyScale.y,0);a.Wobble=foliage;
+            if(_leaf==null){_leaf=new Material(Skin);_leaf.name="MandrakeMatteFoliage";_leaf.SetFloat("_Cull",0);_leaf.SetFloat("_Smoothness",.12f);}
+            var lv=new List<Vector3>();var lt=new List<int>();for(int j=0;j<9;j++){float ang=j*Mathf.PI*2/9;var tip=new Vector3(Mathf.Cos(ang)*(.16f+(j%3)*.035f),.20f+(j%4)*.025f,Mathf.Sin(ang)*(.16f+(j%3)*.035f));Leaf(lv,lt,new Vector3(0,.025f,0),tip,.047f);Tube("LeafPetiole",foliage,new List<Vector3>{new Vector3(0,0,0),tip*.26f,tip*.48f},.004f,LeafGreen);Tube("LeafVein",foliage,new List<Vector3>{tip*.20f,tip*.55f,tip},.0015f,new Color(.39f,.46f,.20f));}Draw("PointedBroadLeaves",foliage,Make("MandrakeLeaves",lv,lt),LeafGreen,_leaf);CombineDetails(foliage,"MergedLeafPetioleDetails","LeafPetiole");CombineDetails(foliage,"MergedLeafVeins","LeafVein");
+            // Same three original meshes. The pose rotates each leaf's vertex range, not the whole plant.
+            var pose=leaves.gameObject.AddComponent<MandrakeLeafPose>();
+            pose.Owner=(Mandrake)m;pose.GrabPoint=leaves.GetComponent<MonsterGrabPoint>();
+            pose.Foliage=foliage;
+            pose.LeafMeshes=new[]{foliage.Find("PointedBroadLeaves").GetComponent<MeshFilter>(),
+                foliage.Find("MergedLeafPetioleDetails").GetComponent<MeshFilter>(),
+                foliage.Find("MergedLeafVeins").GetComponent<MeshFilter>()};
+            pose.VerticesPerLeaf=new[]{5,24,24};
+            pose.RestDirections=new Vector3[9];
+            for(int j=0;j<9;j++){float ang=j*Mathf.PI*2/9;pose.RestDirections[j]=new Vector3(Mathf.Cos(ang)*(.16f+(j%3)*.035f),.20f+(j%4)*.025f,Mathf.Sin(ang)*(.16f+(j%3)*.035f)).normalized;}
+            var soil=Ball("SoftEarthMound",m.transform,new Vector3(0,.008f,0),new Vector3(.35f,.055f,.32f),new Color(.29f,.225f,.14f));
+            var visual=Neutral("HumanRootVisual",root);
+            if(_rootSkin==null){_rootSkin=new Material(Skin);_rootSkin.name="MatteRootBark";_rootSkin.SetFloat("_Smoothness",.12f);const int n=64;var tex=new Texture2D(n,n,TextureFormat.RGB24,true);for(int y=0;y<n;y++)for(int x=0;x<n;x++){float v=.7f+.17f*Mathf.PerlinNoise(x*.13f,y*.31f)+.06f*Mathf.Sin(y*.9f+x*.1f);tex.SetPixel(x,y,new Color(v,v,v));}tex.wrapMode=TextureWrapMode.Repeat;tex.Apply();_rootSkin.SetTexture("_BaseMap",tex);}
+            if(_rootBody==null)_rootBody=Lathe(new[]{-.15f,-.12f,-.07f,-.01f,.055f,.105f,.14f,.15f},new[]{.018f,.048f,.061f,.073f,.074f,.063f,.038f,.01f});Draw("BrownAnthropomorphicRoot",visual,_rootBody,Bark,_rootSkin);
+            for(int side=-1;side<=1;side+=2){Tube("RootArm",visual,new List<Vector3>{new Vector3(side*.06f,-.035f,0),new Vector3(side*.087f,-.08f,.015f),new Vector3(side*.115f,-.125f,.035f)},.012f,Bark,.4f);for(int j=0;j<3;j++)Tube("FineRootFingers",visual,new List<Vector3>{new Vector3(side*.11f,-.12f,.03f),new Vector3(side*(.13f+j*.01f),-.145f,.02f+j*.012f)},.0035f,Bark,.15f);
+                Ball("HeavyBrow",visual,new Vector3(side*.028f,.085f,.064f),new Vector3(.043f,.022f,.021f),Bark);Ball("AngryNarrowEye",visual,new Vector3(side*.025f,.066f,.069f),new Vector3(.026f,.010f,.007f),Black);
+                Tube("FrowningBrowCrease",visual,new List<Vector3>{new Vector3(side*.010f,.082f,.077f),new Vector3(side*.026f,.092f,.073f),new Vector3(side*.047f,.089f,.060f)},.0023f,Crease);
+                Tube("RootFoot",visual,new List<Vector3>{new Vector3(side*.033f,-.11f,.015f),new Vector3(side*.05f,-.149f,.045f),new Vector3(side*.077f,-.15f,.075f)},.013f,Bark,.25f);
+                Tube("CheekWrinkle",visual,new List<Vector3>{new Vector3(side*.050f,.064f,.058f),new Vector3(side*.057f,.033f,.054f),new Vector3(side*.043f,.003f,.068f)},.002f,Crease);}
+            Ball("LongRootNose",visual,new Vector3(0,.048f,.078f),new Vector3(.022f,.039f,.025f),Bark);Ball("OpenGrumpyMouth",visual,new Vector3(0,.010f,.077f),new Vector3(.046f,.047f,.014f),new Color(.11f,.065f,.025f));
+            var lip=new List<Vector3>();for(int j=0;j<=14;j++){float ang=j*Mathf.PI/7;lip.Add(new Vector3(Mathf.Cos(ang)*.025f,.010f+Mathf.Sin(ang)*.026f,.085f));}Tube("RaisedWrinkledLips",visual,lip,.0035f,Bark,1);
+            Ball("UpperTeeth",visual,new Vector3(0,.024f,.088f),new Vector3(.026f,.006f,.004f),new Color(.76f,.65f,.44f));
+            for(int j=0;j<4;j++){float y=-.07f+j*.028f;Tube("BarkSkinFold",visual,new List<Vector3>{new Vector3(-.054f,y,.035f),new Vector3(-.025f,y-.008f,.067f),new Vector3(.025f,y-.006f,.067f),new Vector3(.054f,y+.004f,.035f)},.0017f,Crease);}
+            CombineDetails(visual,"MergedBrownRootBranches","RootArm","FineRootFingers","RootFoot","RaisedWrinkledLips");CombineDetails(visual,"MergedGrumpyFaceCreases","FrowningBrowCrease","CheekWrinkle","BarkSkinFold");
+            // Root остаётся под землёй до штатного среза; Mandrake.cs поднимает его и включает прежний коллайдер.
+        }
+        static void Feather(List<Vector3> v,List<int> tr,Vector3 start,Vector3 mid,Vector3 end,float width){Vector3 side=Vector3.Cross((end-start).normalized,Vector3.right).normalized*width;int k=v.Count;v.Add(start);v.Add(mid-side);v.Add(mid+side);v.Add(end);tr.AddRange(new[]{k,k+1,k+2,k+1,k+3,k+2});}
+        static Mesh CombMesh(){var yz=new[]{new Vector2(-.12f,.08f),new Vector2(-.11f,.17f),new Vector2(-.075f,.125f),new Vector2(-.060f,.205f),new Vector2(-.025f,.14f),new Vector2(0,.21f),new Vector2(.035f,.135f),new Vector2(.07f,.18f),new Vector2(.095f,.12f),new Vector2(.12f,.08f)};var v=new List<Vector3>();var tr=new List<int>();for(int side=-1;side<=1;side+=2){int first=v.Count;v.Add(new Vector3(side*.016f,.08f,0));foreach(var p in yz)v.Add(new Vector3(side*.016f,p.y,p.x));for(int j=0;j<yz.Length-1;j++)tr.AddRange(side<0?new[]{first,first+j+1,first+j+2}:new[]{first,first+j+2,first+j+1});}int n=yz.Length+1;for(int j=0;j<yz.Length-1;j++){int k=j+1;tr.AddRange(new[]{k,k+n,k+1,k+1,k+n,k+n+1});}return Make("ScallopedRedRoosterComb",v,tr);}
+        public static void Basilisk(Monster m,MonsterAnim a){
+            Hide(m,a,"Body","Neck","Head","Comb","Eyes","LegL","LegR","TailSnake");var body=Neutral("RoosterBodyVisual",Find(m,"Body"));Ball("BronzeRoosterBreast",body,Vector3.zero,new Vector3(.73f,.79f,1.02f),Bronze);
+            for(int side=-1;side<=1;side+=2){var wing=Node("FoldedFeatherWing",body,new Vector3(side*.33f,.09f,-.12f));a.Wings.Add(wing);var v=new List<Vector3>();var tr=new List<int>();for(int j=0;j<9;j++)Feather(v,tr,new Vector3(0,.16f,-.24f+j*.06f),new Vector3(side*.025f,-.015f,-.28f+j*.065f),new Vector3(0,-.24f,-.38f+j*.065f),.033f);Draw("LayeredBronzeWingFeathers",wing,Make("LayeredWing",v,tr),Gold,Feathers);}
+            var tailFeathers=new List<Vector3>();var ft=new List<int>();for(int j=0;j<7;j++){float s=(j-3)/3f;Feather(tailFeathers,ft,new Vector3(s*.05f,.15f,-.38f),new Vector3(s*.20f,.75f,-.63f),new Vector3(s*.31f,.59f,-1.04f-Mathf.Abs(s)*.07f),.045f);}Draw("DarkCurvedRoosterPlumes",body,Make("DarkTailPlumes",tailFeathers,ft),new Color(.16f,.15f,.095f),Feathers);
+            var neck=Neutral("HackleNeckVisual",Find(m,"Neck"));Ball("GoldenRoosterNeck",neck,new Vector3(0,-.01f,0),new Vector3(.29f,.56f,.30f),Gold);var hackles=new List<Vector3>();var ht=new List<int>();for(int j=0;j<12;j++){float ang=j*Mathf.PI/6;var d=new Vector3(Mathf.Cos(ang),0,Mathf.Sin(ang));Feather(hackles,ht,d*.11f+Vector3.up*.20f,d*.15f,d*.17f-Vector3.up*.25f,.025f);}Draw("LongGoldenHackles",neck,Make("NeckFeathers",hackles,ht),new Color(.72f,.54f,.26f),Feathers);
+            // Соединители следуют прежним переводам головы/шеи при клевке, без новых коллайдеров.
+            var links=m.gameObject.AddComponent<RuinsNeckLinks>();links.Neck=Find(m,"Neck");links.Head=Find(m,"Head");
+            for(int j=0;j<2;j++){var g=Prim.Shape(PrimitiveType.Capsule,"ContinuousGoldenNeck_"+j,m.transform,Vector3.zero,Vector3.one,Gold,false);g.GetComponent<Renderer>().sharedMaterial=Skin;links.Links.Add(g.transform);}links.Refresh();
+            var head=Neutral("RoosterHeadVisual",Find(m,"Head"));var face=Node("RoosterFace",head,new Vector3(0,-.08f,0));Ball("RoosterHead",face,Vector3.zero,new Vector3(.27f,.23f,.31f),Gold);Draw("RedComb",face,CombMesh(),Red);
+            Tube("PointedBeak",face,new List<Vector3>{new Vector3(0,-.018f,.13f),new Vector3(0,-.04f,.21f),new Vector3(0,-.06f,.28f)},.045f,new Color(.69f,.53f,.23f),.01f);
+            for(int side=-1;side<=1;side+=2){Ball("RedWattle",face,new Vector3(side*.035f,-.10f,.12f),new Vector3(.053f,.12f,.052f),Red);Ball("EyeSocket",face,new Vector3(side*.115f,.035f,.075f),new Vector3(.042f,.044f,.035f),new Color(.37f,.29f,.11f));var eye=Ball("SoftGreenEye",face,new Vector3(side*.13f,.037f,.082f),new Vector3(.022f,.023f,.016f),new Color(.51f,.64f,.23f));Prim.SetEmission(eye.GetComponent<Renderer>(),new Color(.045f,.070f,.018f));Ball("EyeSlit",face,new Vector3(side*.14f,.037f,.09f),new Vector3(.006f,.018f,.004f),Black);}
+            for(int side=-1;side<=1;side+=2){var leg=Neutral("BirdLegVisual",Find(m,side<0?"LegL":"LegR"));a.Legs.Add(Find(m,side<0?"LegL":"LegR"));Tube("ScaledBirdShin",leg,new List<Vector3>{new Vector3(0,.20f,0),new Vector3(0,-.16f,.02f),new Vector3(0,-.205f,.06f)},.028f,Gold,.75f);for(int j=-1;j<=1;j++)Tube("BirdToe",leg,new List<Vector3>{new Vector3(0,-.20f,.05f),new Vector3(j*.075f,-.218f,.18f),new Vector3(j*.10f,-.22f,.24f)},.013f,Gold,.12f);CombineDetails(leg,"MergedBirdFoot","ScaledBirdShin","BirdToe");}
+            var snake=Node("LivingSnakeTailVisual",m.transform,Find(m,"TailSnake").localPosition);a.Wobble=snake;var path=new List<Vector3>{new Vector3(0,0,.43f),new Vector3(-.18f,-.12f,.13f),new Vector3(-.32f,-.28f,-.12f),new Vector3(-.13f,-.4f,-.28f),new Vector3(.26f,-.42f,-.32f),new Vector3(.57f,-.28f,-.28f),new Vector3(.7f,-.02f,-.22f),new Vector3(.60f,.18f,-.13f),new Vector3(.42f,.24f,-.04f),new Vector3(.27f,.08f,.01f),new Vector3(.32f,-.1f,.1f)};Tube("CurledOliveSnake",snake,path,.080f,Snake,.58f);var end=path[path.Count-1];Ball("SnakeHead",snake,end,new Vector3(.14f,.10f,.19f),Snake);for(int side=-1;side<=1;side+=2){Ball("SnakeEye",snake,end+new Vector3(side*.057f,.014f,.058f),Vector3.one*.017f,new Color(.57f,.62f,.26f));Ball("SnakePupil",snake,end+new Vector3(side*.064f,.015f,.064f),Vector3.one*.008f,Black);}
+            for(int j=2;j<path.Count-1;j++){var at=path[j];Ball("SnakeScaleMark",snake,at+Vector3.up*.073f,new Vector3(.06f,.012f,.065f),new Color(.30f,.33f,.12f));}
+        }
+    }
+}

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5528951ecb4a406687e150cdd57f664a, type: 3}
+  m_Name: Floor_3
+  m_EditorClassIdentifier: Assembly-CSharp::Podz.DungeonPrefabCatalog
+  Floor: 3
+  Seed: 1
+  SourceIndex: 6
+  Corridor: 1
+  FortressRooms: 0
+  Blocks:
+  - {fileID: 7616937507958380621, guid: d60b7795d5feaaa42844e8d0868dc34c, type: 3}
+  - {fileID: 5720999456308178375, guid: 932b90934dd09314c8667e35160cce3f, type: 3}
+  - {fileID: 1637335099265028253, guid: 11b18536fb40e4b469be82c02ef2b821, type: 3}
+  - {fileID: 5850922167508285352, guid: fdd8ab746b2ce4c48873037b3e783459, type: 3}
+  - {fileID: 8847286725609639557, guid: c02e827230828e2418892878bcdd571f, type: 3}
+  - {fileID: 9105079901779561078, guid: a2430116aaeb04e418f0f1e63aa43920, type: 3}
+  - {fileID: 7547983275385375059, guid: 426fb6104608c2e479af0a69a7bcb246, type: 3}
+  - {fileID: 1982859214895947158, guid: 5335256c6054e0a47b877bee8ce12849, type: 3}
+  - {fileID: 4399906846456083357, guid: 1ebe6fb4188f6c44eaa6348450993241, type: 3}
+  - {fileID: 7572661493357729096, guid: fd8c32c72dea5ed45a42d7e3a5b75f9e, type: 3}
+  - {fileID: 8596508806169285358, guid: d5e00a0f85ea4cc4ba9f4aa2ac7c0ebf, type: 3}
+  - {fileID: 2199377013552289079, guid: f3969e5e53115304e9dc35cda110e34d, type: 3}
+  - {fileID: 6526158086810080682, guid: ad657be1879a5904c929a94efa4417fe, type: 3}
+  - {fileID: 4574468274095211946, guid: a1a7e7685d4fe8c4bb8c4a5794aa7259, type: 3}
+  - {fileID: 2785310452712395162, guid: 0e7f0497b163342439170c629bf503ab, type: 3}
+  ReviewPlacements: []
+  LastPrefab: {fileID: 2785310452712395162, guid: 0e7f0497b163342439170c629bf503ab, type: 3}
